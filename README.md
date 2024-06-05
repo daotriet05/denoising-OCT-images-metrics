@@ -26,6 +26,10 @@
   - `result_path` is the file csv that you want to put the result into
   - `ROIs` is the list contains ROIs with the format `(x,y,w,h)`
   - `background_indices` is the list contains indices of background regions in ROIs
+ 
+# References
+- paper [Multiresolution Denoising for Optical Coherence Tomography: A Review and Evaluation](http://dx.doi.org/10.2174/157340508786404044)
+- @ashkan-abbasi66 [github repository](https://github.com/ashkan-abbasi66/OCT-denoising-package)
 
 
 
