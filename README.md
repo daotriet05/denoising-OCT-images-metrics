@@ -1,14 +1,14 @@
 # Denoising OCT images metrics (CNR, MSR, TP, EP and ENL)
 
-- CNR: Contrast-to-Noise Ratio
+- `CNR`: Contrast-to-Noise Ratio
 
-- MSR: Mean-to-Standard-deviation Ratio
+- `MSR`: Mean-to-Standard-deviation Ratio
 
-- TP: Texture Preservation
+- `TP`: Texture Preservation
 
-- EP: Edge Preservation
+- `EP`: Edge Preservation
 
-- ENL: Equivalent Number of Looks
+- `ENL`: Equivalent Number of Looks
 
 # How to use
 
