@@ -22,17 +22,17 @@ def process_images(image1, image2, rois, background_indices):
     msr,cnr,enl=comp_MSR_CNR_ENL(denoised, noisy, rois, background_indices)
     return {'ep':ep, 'tp':tp, 'msr':msr, 'cnr':cnr, 'enl':enl}
 
-def main(folder1, folder2,result_path,rois,background_indices):
-    files1 = list_image_files(folder1)
+def main(denoised, noisy,result_path,rois,background_indices):
+    files = list_image_files(denoised)
     FILENAME=[]
     CNR=[]
     MSR=[]
     TP=[]
     EP=[]
-    for file_name in files1:
+    for file_name in files:
         print(f'processing {file_name}')
-        file1_path = os.path.join(folder1, file_name)
-        file2_path = os.path.join(folder2, file_name)
+        file1_path = os.path.join(denoised, file_name)
+        file2_path = os.path.join(noisy, file_name)
         if os.path.exists(file2_path):
             result=process_images(file1_path, file2_path, rois, background_indices)
             FILENAME.append(file_name)
@@ -41,7 +41,7 @@ def main(folder1, folder2,result_path,rois,background_indices):
             TP.append(result['tp'])
             EP.append(result['ep'])
         else:
-            print(f"File {file_name} not found in {folder2}")
+            print(f"File {file_name} not found in {noisy}")
         
     data={
         "file_name":FILENAME,
@@ -54,9 +54,9 @@ def main(folder1, folder2,result_path,rois,background_indices):
     df.to_csv(result_path,index=False)
 
 if __name__ == "__main__":
-    folder1 = "D:/projects/IEEE SPS 2024/code/metrics/data_2/denoised" # denoised folder
-    folder2 = "D:/projects/IEEE SPS 2024/code/metrics/data_2/noisy" # noisy folder
+    denoised = "D:/projects/IEEE SPS 2024/code/metrics/data_2/denoised" # denoised folder
+    noisy = "D:/projects/IEEE SPS 2024/code/metrics/data_2/noisy" # noisy folder
     result_path="D:/projects/IEEE SPS 2024/code/metrics/result/diffusion_5_6.csv" # result file
-    rois = [(250,0,50,50), (100, 130, 30, 30), (170, 150, 30, 30), (10, 35, 30, 30), (50,150,50,50), (200,200,50,50)]
+    ROIs = [(250,0,50,50), (100, 130, 30, 30), (170, 150, 30, 30), (10, 35, 30, 30), (50,150,50,50), (200,200,50,50)] # ROIs
     background_indices = [0]
-    main(folder1, folder2,result_path, rois, background_indices)
+    main(denoised, noisy,result_path, ROIs, background_indices)
